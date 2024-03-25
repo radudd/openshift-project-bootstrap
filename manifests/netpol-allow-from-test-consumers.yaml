@@ -1,0 +1,14 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-from-test-consumers
+spec:
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              network.openshift.io/test-consumer: 'true'
+  podSelector: {}
+  policyTypes:
+    - Ingress
